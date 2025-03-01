@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ram Meyyappan - Data Scientist</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #E0E0E0; /* Light gray text */
+      background-color: #2E3440; /* Dark blue-gray background */
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+      color: #88C0D0; /* Light teal for headings */
+    }
+
+    a {
+      color: #81A1C1; /* Soft blue for links */
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #88C0D0; /* Light teal for hover */
+    }
+
+    /* Navbar */
+    nav {
+      background-color: #4C566A; /* Dark gray-blue */
+      color: #E0E0E0; /* Light gray text */
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: #E0E0E0; /* Light gray text */
+      text-decoration: none;
+    }
+
+    #theme-toggle {
+      background: none;
+      border: none;
+      color: #E0E0E0; /* Light gray for moon icon */
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: url('sample-background.jpg'); /* Add your local background image */
+      background-size: cover;
+      background-position: center;
+      color: #E0E0E0; /* Light gray text */
+      text-align: center;
+      padding: 5rem 1rem;
+      position: relative;
+      min-height: 60vh; /* Adjusted height */
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(46, 52, 64, 0.7); /* Dark blue overlay */
+    }
+
+    .hero h1, .hero p, .hero .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid #81A1C1; /* Soft blue border */
+    }
+
+    .hero .btn {
+      background-color: #81A1C1; /* Soft blue */
+      color: #2E3440; /* Dark blue-gray text */
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .hero .btn:hover {
+      background-color: #88C0D0; /* Light teal */
+    }
+
+    /* Moon Animation */
+    .moon {
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, #ECEFF4, #D8DEE9);
+      border-radius: 50%;
+      box-shadow: 0 0 50px #ECEFF4;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 2rem;
+      background-color: #4C566A; /* Dark gray-blue */
+      color: #E0E0E0; /* Light gray text */
+    }
+
+    .about img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+    }
+
+    .about-text ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 2rem;
+      background-color: #3B4252; /* Dark blue-gray */
+      color: #E0E0E0; /* Light gray text */
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      background-color: #4C566A; /* Dark gray-blue */
+      border: 1px solid #81A1C1; /* Soft blue border */
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .see-all-projects {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .see-all-projects .btn {
+      background-color: #81A1C1; /* Soft blue */
+      color: #2E3440; /* Dark blue-gray text */
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .see-all-projects .btn:hover {
+      background-color: #88C0D0; /* Light teal */
+    }
+
+    /* Certifications Section */
+    .certifications {
+      padding: 2rem;
+      background-color: #4C566A; /* Dark gray-blue */
+      color: #E0E0E0; /* Light gray text */
+    }
+
+    .certifications-slider {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 1rem;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .prev {
+      left: 1rem;
+    }
+
+    .next {
+      right: 1rem;
+    }
+
+    /* Reviews Section */
+    .reviews {
+      padding: 2rem;
+      background-color: #81A1C1; /* Soft blue */
+      color: #2E3440; /* Dark blue-gray text */
+    }
+
+    .review-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .review-form input, .review-form textarea {
+      padding: 0.5rem;
+      border: 1px solid #DDD;
+      border-radius: 5px;
+    }
+
+    .review-form button {
+      background-color: #88C0D0; /* Light teal */
+      color: #2E3440; /* Dark blue-gray text */
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .review-form button:hover {
+      background-color: #81A1C1; /* Soft blue */
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .review-card {
+      background-color: #4C566A; /* Dark gray-blue */
+      border: 1px solid #81A1C1; /* Soft blue border */
+      padding: 1rem;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .review-card h3 {
+      margin: 0;
+    }
+
+    .review-card p {
+      margin: 0.5rem 0 0;
+    }
+
+    .review-card .delete-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background-color: #E76F51;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-card .delete-btn:hover {
+      background-color: #D9534F;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #4C566A; /* Dark gray-blue */
+      color: #E0E0E0; /* Light gray text */
+      padding: 2rem;
+      text-align: left;
+    }
+
+    footer h3 {
+      margin-bottom: 1rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    footer a {
+      color: #88C0D0; /* Light teal */
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #81A1C1; /* Soft blue */
+    }
+
+    footer .copyright {
+      margin-top: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .project-grid, .certifications-grid, .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prev, .next {
+        font-size: 1rem;
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Ram Meyyappan A</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="theme-toggle">🌙</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="moon"></div> <!-- Moon Animation -->
+    <img src="profile-picture.jpg" alt="Ram Meyyappan" class="profile-picture">
+    <h1>Ram Meyyappan A</h1>
+    <p>Data Scientist | Machine Learning Engineer</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <img src="sample-about.jpg" alt="Ram Meyyappan">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Hi, I'm Ram Meyyappan, a Data Scientist & Machine Learning Enthusiast passionate about transforming data into intelligent business solutions. With a strong foundation in AI, Data Science, and Business Analytics, I specialize in leveraging data-driven strategies to drive growth and innovation.</p>
+      <ul>
+        <li><strong>Expertise:</strong> Data Science, Machine Learning, AI Model Development, Business Analytics, Digital Marketing.</li>
+        <li><strong>Mission:</strong> Bridge the gap between data and decision-making.</li>
+        <li><strong>What I Offer:</strong> Predictive modeling, automation, data visualization, and AI consulting.</li>
+      </ul>
+      <p>📩 Let’s Connect! Interested in working together? Feel free to reach out!</p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-grid" id="project-grid">
+      <!-- Projects will be dynamically loaded here -->
+    </div>
+    <div class="see-all-projects">
+      <a href="https://github.com/Rammeyyapp" class="btn" target="_blank">See All Projects</a>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="certifications">
+    <h2>Certifications</h2>
+    <div class="certifications-slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="certificate1.jpg" alt="Certificate 1">
+        </div>
+        <div class="slide">
+          <img src="certificate2.jpg" alt="Certificate 2">
+        </div>
+        <div class="slide">
+          <img src="certificate3.jpg" alt="Certificate 3">
+        </div>
+        <div class="slide">
+          <img src="certificate4.jpg" alt="Certificate 4">
+        </div>
+      </div>
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="reviews">
+    <h2>Leave a Review</h2>
+    <form class="review-form" id="review-form">
+      <input type="text" id="reviewer-name" placeholder="Your Name" required>
+      <input type="email" id="reviewer-email" placeholder="Your Email" required>
+      <textarea id="review-message" placeholder="Your Review" required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+    <div class="review-grid" id="review-grid">
+      <!-- Reviews will be dynamically loaded here -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Contact</h3>
+    <p>Phone: <a href="tel:9994399207">9994399207</a></p>
+    <p>Email: <a href="mailto:rammeyyappan241@gmail.com">rammeyyappan241@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/rammeyyappan--engineer?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn Profile</a></p>
+    <p>GitHub: <a href="https://github.com/Rammeyyapp" target="_blank">GitHub Profile</a></p>
+    <p class="copyright">© 2023 Ram Meyyappan</p>
+  </footer>
+
+  <script>
+    // Smooth Scroll
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Dynamic Project Loading
+    const projects = [
+      {
+        title: "Fruit Classification using ML",
+        description: "A machine learning model to predict apple or banana is fresh or rotten using Python, Ml, Html, Css as full fledge website with flask.",
+        image: "sample-project1.jpg", // Add your local image
+        link: "https://github.com/Rammeyyapp/fruit-prediction-web-app-for-apple-and-bannana-with-CNN-and-Chatbot"
+      },
+      {
+        title: "Sales Analytics Dashboard",
+        description: "A data visualization dashboard for sales analytics using Power BI.",
+        image: "sample-project2.jpg", // Add your local image
+        link: "https://github.com/Rammeyyapp/Power-bi/blob/main/Sales%20Analysis.pbix"
+      },
+      {
+        title: "Car Analytics Dashboard",
+        description: "A data visualization dashboard for car analytics using Power BI.",
+        image: "sample-project3.jpg", // Add your local image
+        link: "https://github.com/Rammeyyapp/Power-bi/blob/main/Car-Analysis%20Dashboard.pbix"
+      }
+    ];
+
+    const projectGrid = document.getElementById('project-grid');
+
+    projects.forEach(project => {
+      const projectCard = document.createElement('div');
+      projectCard.classList.add('project-card');
+      projectCard.innerHTML = `
+        <img src="${project.image}" alt="${project.title}">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <a href="${project.link}" class="btn" target="_blank">View Project</a>
+      `;
+      projectGrid.appendChild(projectCard);
+    });
+
+    // Certifications Slider
+    let slideIndex = 0;
+
+    function showSlide(index) {
+      const slides = document.querySelector('.slides');
+      const totalSlides = document.querySelectorAll('.slide').length;
+      if (index >= totalSlides) slideIndex = 0;
+      if (index < 0) slideIndex = totalSlides - 1;
+      slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex--;
+      showSlide(slideIndex);
+    }
+
+    // Review Form Submission
+    const reviewForm = document.getElementById('review-form');
+    const reviewGrid = document.getElementById('review-grid');
+
+    reviewForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const reviewerName = document.getElementById('reviewer-name').value;
+      const reviewerEmail = document.getElementById('reviewer-email').value;
+      const reviewMessage = document.getElementById('review-message').value;
+
+      if (reviewerName && reviewerEmail && reviewMessage) {
+        const reviewCard = document.createElement('div');
+        reviewCard.classList.add('review-card');
+        reviewCard.innerHTML = `
+          <h3>${reviewerName}</h3>
+          <p>${reviewMessage}</p>
+          <button class="delete-btn" onclick="deleteReview(this)">×</button>
+        `;
+        reviewGrid.appendChild(reviewCard);
+        reviewForm.reset();
+      } else {
+        alert('Please fill out all fields.');
+      }
+    });
+
+    // Delete Review Function
+    function deleteReview(button) {
+      const reviewCard = button.parentElement;
+      reviewCard.remove();
+    }
+  </script>
+</body>
+</html>
